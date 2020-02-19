@@ -10,6 +10,7 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by LaunchCode
@@ -84,6 +85,44 @@ public class JobData {
         return jobs;
     }
 
+    public static ArrayList<HashMap<String, String>> findByValue(String value) {
+        loadData();
+        ArrayList<HashMap<String, String >> jobs = new ArrayList<>();
+
+        for (int i = 0; i < allJobs.size(); i++) {
+            for (HashMap<String, String> job : allJobs) {
+                for (String jobEntry : job.values()) {
+                    String fieldValue = jobEntry.toLowerCase();
+                    if (fieldValue.contains(value.toLowerCase())) {
+                        if (!jobs.contains(job)) {
+                            jobs.add(job);
+                        }
+                    }
+                    }
+            }
+        }
+        return jobs;
+    }
+
+    //I know this one works but not case insensitive
+//    public static ArrayList<HashMap<String, String>> findByValue(String value) {
+//        loadData();
+//        ArrayList<HashMap<String, String >> jobs = new ArrayList<>();
+//
+//        for (int i = 0; i < allJobs.size(); i++) {
+//            for (HashMap<String, String> job : allJobs) {
+//                if (job.containsValue(value)) {
+//                    if (!jobs.contains(job)) {
+//                        jobs.add(job);
+//                    }
+//                }
+//
+//            }
+//        }
+//        return jobs;
+//    }
+//
+
     /**
      * Read in data from a CSV file and store it in a list
      */
@@ -124,5 +163,7 @@ public class JobData {
             e.printStackTrace();
         }
     }
+
+
 
 }
