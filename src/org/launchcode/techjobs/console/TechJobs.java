@@ -111,8 +111,10 @@ public class TechJobs {
         if (someJobs.isEmpty()) {
             System.out.println("Your search did not return any valid results. Please try again.");
         } else {
-            System.out.println("*****************");
+            System.out.println("\n");
+
             for (int i = 0; i < someJobs.size(); i++) {
+                System.out.println("*****************");
                 for (Map.Entry<String, String> job : someJobs.get(i).entrySet()) {
                     System.out.println(job.getKey() + ": " + job.getValue());
                 }
